@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUREUM // Luxury Champagne Gold Calculator</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to style.css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Interactive Golden Stardust Net -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Floating Background Ambiance Glows -->
+    <div class="ambient-glow gold-glow"></div>
+    <div class="ambient-glow platinum-glow"></div>
+
+    <!-- Main System Container -->
+    <main class="system-container">
+        <!-- Luxury Holographic Frame Wrapper (Stationary, no tilting) -->
+        <div class="holo-frame" id="holo-calculator">
+            
+            <!-- Calculator Top System Header Bar -->
+            <div class="calc-header">
+                <div class="system-status">
+                    <span class="status-indicator online"></span>
+                    <span class="status-text">AUREUM LINK V1.0_</span>
+                </div>
+                <div class="calc-brand">
+                    <span class="brand-glow">AUREUM</span>
+                </div>
+                <div class="header-controls">
+                    <!-- Sound Toggle Waveform Button -->
+                    <button class="sound-toggle active" id="sound-btn" aria-label="Toggle Audio Feedback" title="Toggle UI Sound Synthesizer">
+                        <svg class="sound-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <line x1="4" y1="9" x2="4" y2="15" class="wave-bar wave-bar-1"></line>
+                            <line x1="9" y1="6" x2="9" y2="18" class="wave-bar wave-bar-2"></line>
+                            <line x1="14" y1="11" x2="14" y2="13" class="wave-bar wave-bar-3"></line>
+                            <line x1="19" y1="4" x2="19" y2="20" class="wave-bar wave-bar-4"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Double-Screen Premium Glass Display -->
+            <div class="calc-display-wrapper">
+                <!-- Flawless Gloss Mirror Scanline overlay removed for a clean premium mirror look -->
+                <div class="crt-overlay"></div>
+                
+                <!-- Mathematical Formula / History Screen -->
+                <div class="display-history" id="display-formula"></div>
+                
+                <!-- Main Value Screen -->
+                <div class="display-current-wrapper">
+                    <span class="display-current" id="display-input">0</span>
+                    <span class="blinking-cursor">_</span>
+                </div>
+
+                <!-- Subtle Status Strip inside Display -->
+                <div class="display-status-strip">
+                    <span class="terminal-tag">[AUREUM.VAL]</span>
+                    <span class="terminal-stats" id="term-stats">MEM: 0.00kb // CPU: 1.2%</span>
+                </div>
+            </div>
+
+            <!-- Responsive Dynamic Buttons Grid -->
+            <div class="calc-grid">
+                
+                <!-- Row 1: Actions -->
+                <button class="btn glass-btn action-btn danger-glow" data-key="Clear" data-sound="clear" id="key-clear">
+                    <span class="btn-text">C</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn action-btn warning-glow" data-key="Backspace" data-sound="delete" id="key-backspace">
+                    <!-- Backspace Icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="backspace-icon">
+                        <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                        <line x1="18" y1="9" x2="12" y2="15"></line>
+                        <line x1="12" y1="9" x2="18" y2="15"></line>
+                    </svg>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn operator-glow" data-key="%" data-val="%" data-sound="operator">
+                    <span class="btn-text">%</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn operator-glow" data-key="/" data-val="/" data-sound="operator">
+                    <span class="btn-text">÷</span>
+                    <span class="glow-edge"></span>
+                </button>
+
+                <!-- Row 2: Numbers 7, 8, 9 & Operator * -->
+                <button class="btn glass-btn num-btn" data-key="7" data-val="7" data-sound="number">
+                    <span class="btn-text">7</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="8" data-val="8" data-sound="number">
+                    <span class="btn-text">8</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="9" data-val="9" data-sound="number">
+                    <span class="btn-text">9</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn operator-glow" data-key="*" data-val="*" data-sound="operator">
+                    <span class="btn-text">×</span>
+                    <span class="glow-edge"></span>
+                </button>
+
+                <!-- Row 3: Numbers 4, 5, 6 & Operator - -->
+                <button class="btn glass-btn num-btn" data-key="4" data-val="4" data-sound="number">
+                    <span class="btn-text">4</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="5" data-val="5" data-sound="number">
+                    <span class="btn-text">5</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="6" data-val="6" data-sound="number">
+                    <span class="btn-text">6</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn operator-glow" data-key="-" data-val="-" data-sound="operator">
+                    <span class="btn-text">−</span>
+                    <span class="glow-edge"></span>
+                </button>
+
+                <!-- Row 4: Numbers 1, 2, 3 & Operator + -->
+                <button class="btn glass-btn num-btn" data-key="1" data-val="1" data-sound="number">
+                    <span class="btn-text">1</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="2" data-val="2" data-sound="number">
+                    <span class="btn-text">2</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="3" data-val="3" data-sound="number">
+                    <span class="btn-text">3</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn operator-glow" data-key="+" data-val="+" data-sound="operator">
+                    <span class="btn-text">+</span>
+                    <span class="glow-edge"></span>
+                </button>
+
+                <!-- Row 5: Number 0, Decimal & Equal -->
+                <button class="btn glass-btn num-btn" data-key="0" data-val="0" data-sound="number">
+                    <span class="btn-text">0</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <button class="btn glass-btn num-btn" data-key="." data-val="." data-sound="number">
+                    <span class="btn-text">.</span>
+                    <span class="glow-edge"></span>
+                </button>
+                <!-- FIXED data-val="=" to allow calculation evaluate on click -->
+                <button class="btn glass-btn equal-btn master-glow" data-key="Enter" data-val="=" data-sound="equal" id="key-equal">
+                    <span class="btn-text">=</span>
+                    <span class="glow-edge"></span>
+                </button>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Script loading -->
+    <script src="script.js"></script>
+</body>
+</html>

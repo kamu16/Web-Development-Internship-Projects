@@ -1,0 +1,684 @@
+/* ==========================================================================
+   AUREUM // LUXURY CHAMPAGNE GOLD & OBSIDIAN DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+    /* Luxury Gold & Metallic Color Palette */
+    --bg-dark: #08080c;
+    --neon-blue: #d4af37;        /* Solid Metallic Champagne Gold */
+    --neon-purple: #b38728;      /* Warm Copper-Gold */
+    --neon-magenta: #ffea9f;     /* High-Light Pale Gold */
+    --neon-green: #a3c9a8;       /* Subtle Sage Green Status */
+    --neon-amber: #e5a93b;       /* Warm Bronze-Gold */
+    --neon-danger: #c0392b;      /* Dark Crimson Warning */
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.55);
+    
+    /* Premium Glassmorphism Properties */
+    --glass-bg: rgba(18, 18, 24, 0.65);
+    --glass-border: rgba(212, 175, 55, 0.15); /* Gold Wireframe border */
+    --glass-glow: 0 16px 48px 0 rgba(0, 0, 0, 0.85);
+    
+    /* Layout & Fonts */
+    --font-sci-fi: 'Orbitron', -apple-system, sans-serif;
+    --font-ui: 'Outfit', -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   RESET & SYSTEM BASE
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-ui);
+    color: var(--text-white);
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Canvas for interactive golden stardust */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: all;
+}
+
+/* Ambient Pulse Glows in background (Subtle Warm Shifting) */
+.ambient-glow {
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+    animation: float-glow 25s infinite alternate ease-in-out;
+}
+
+.gold-glow {
+    background: radial-gradient(circle, var(--neon-blue) 0%, transparent 75%);
+    top: -15%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.platinum-glow {
+    background: radial-gradient(circle, #e5e4e2 0%, transparent 75%);
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -6s;
+}
+
+@keyframes float-glow {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(5%, 4%) scale(1.1);
+    }
+}
+
+/* ==========================================================================
+   MAIN LAYOUT & HOLO-FRAME
+   ========================================================================== */
+
+.system-container {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 440px;
+}
+
+/* Stationary luxury glass widget (No tilts, no floats) */
+.holo-frame {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 24px;
+    box-shadow: var(--glass-glow),
+                0 0 50px rgba(212, 175, 55, 0.04),
+                inset 0 0 25px rgba(255, 255, 255, 0.01);
+    position: relative;
+    overflow: hidden;
+}
+
+.holo-frame::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Top bar styled like system status indicators */
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-indicator.online {
+    background-color: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+    animation: status-pulse 2s infinite ease-in-out;
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+.status-text {
+    font-family: var(--font-sci-fi);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.calc-brand {
+    font-family: var(--font-sci-fi);
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #fff;
+    position: relative;
+}
+
+.brand-glow {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
+                 0 0 15px var(--neon-blue);
+    animation: neon-text-flicker 6s infinite alternate;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+}
+
+/* Sound Wave Mute Toggle Button */
+.sound-toggle {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.sound-toggle:hover {
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    background: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+}
+
+.sound-toggle.active {
+    color: var(--neon-blue);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.sound-toggle.active .wave-bar {
+    animation: sound-bounce 1s infinite alternate ease-in-out;
+}
+
+.sound-toggle.active .wave-bar-1 { animation-delay: 0.1s; }
+.sound-toggle.active .wave-bar-2 { animation-delay: 0.3s; }
+.sound-toggle.active .wave-bar-3 { animation-delay: 0.2s; }
+.sound-toggle.active .wave-bar-4 { animation-delay: 0.4s; }
+
+@keyframes sound-bounce {
+    0% { transform: scaleY(0.4); transform-origin: center; }
+    100% { transform: scaleY(1); transform-origin: center; }
+}
+
+.sound-wave {
+    width: 16px;
+    height: 16px;
+}
+
+/* ==========================================================================
+   DISPLAY SCREEN
+   ========================================================================== */
+
+.calc-display-wrapper {
+    background: rgba(4, 4, 6, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 20px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.95),
+                0 0 15px rgba(212, 175, 55, 0.01);
+}
+
+/* Gloss Mirror CRT Screen Effect Overlay */
+.crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0.85;
+}
+
+/* Display Scanline Move Frame */
+@keyframes crt-flicker {
+    0% { opacity: 0.99; }
+    50% { opacity: 1; }
+    100% { opacity: 0.99; }
+}
+
+.calc-display-wrapper {
+    animation: crt-flicker 0.3s infinite;
+}
+
+/* Mathematical Formula (Upper Display) */
+.display-history {
+    font-family: var(--font-sci-fi);
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    opacity: 0.8;
+    text-align: right;
+    min-height: 24px;
+    line-height: 24px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    margin-bottom: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Main Display Wrapper & Value Output */
+.display-current-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 56px;
+    overflow: hidden;
+}
+
+.display-current {
+    font-family: var(--font-sci-fi);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-align: right;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                 0 0 20px rgba(212, 175, 55, 0.2);
+    transition: font-size 0.15s ease-out;
+}
+
+/* Pulsing Gold Cursor */
+.blinking-cursor {
+    font-family: var(--font-sci-fi);
+    font-size: 2.4rem;
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+    margin-left: 2px;
+    font-weight: 900;
+    animation: pulse-cursor 0.9s infinite alternate;
+}
+
+@keyframes pulse-cursor {
+    0%, 30% { opacity: 0; }
+    70%, 100% { opacity: 1; }
+}
+
+/* Status Strip on Screen Bottom */
+.display-status-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(212, 175, 55, 0.15);
+    font-family: var(--font-sci-fi);
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.terminal-tag {
+    color: var(--neon-blue);
+}
+
+.terminal-stats {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   BUTTONS STYLING
+   ========================================================================== */
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Base button properties */
+.btn {
+    position: relative;
+    height: 64px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    outline: none;
+    font-family: var(--font-sci-fi);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+/* Glassmorphism Button Background */
+.glass-btn {
+    background: rgba(255, 255, 255, 0.015);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.005),
+                0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Scaling and Light Bloom */
+.btn:hover {
+    transform: scale(1.02);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+/* Click Active States */
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* Floating internal text */
+.btn-text {
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+/* SVG icons alignment inside buttons */
+.backspace-icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+    display: block;
+}
+
+/* Button Glow Edges */
+.glow-edge {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Number Button Theme */
+.num-btn {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.num-btn:hover {
+    background: rgba(212, 175, 55, 0.04);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.num-btn:hover .btn-text {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+}
+
+/* Operator Button Theme (Bronze-Gold) */
+.operator-glow {
+    background: rgba(212, 175, 55, 0.02);
+    border-color: rgba(212, 175, 55, 0.1);
+    color: var(--neon-purple);
+}
+
+.operator-glow:hover {
+    background: rgba(212, 175, 55, 0.06);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.18);
+}
+
+.operator-glow .btn-text {
+    color: var(--neon-blue);
+    text-shadow: 0 0 6px var(--neon-purple);
+}
+
+.operator-glow:hover .btn-text {
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* Danger Button Theme (C Key - Muted Crimson) */
+.danger-glow {
+    background: rgba(192, 57, 43, 0.02);
+    border-color: rgba(192, 57, 43, 0.1);
+}
+
+.danger-glow:hover {
+    background: rgba(192, 57, 43, 0.06);
+    border-color: rgba(192, 57, 43, 0.35);
+    box-shadow: 0 0 15px rgba(192, 57, 43, 0.15);
+}
+
+.danger-glow .btn-text {
+    color: #f1948a;
+    text-shadow: 0 0 8px var(--neon-danger);
+}
+
+.danger-glow:hover .btn-text {
+    color: #ffffff;
+    text-shadow: 0 0 12px var(--neon-danger);
+}
+
+/* Warning Button Theme (Backspace Key) */
+.warning-glow {
+    background: rgba(229, 169, 59, 0.02);
+    border-color: rgba(229, 169, 59, 0.1);
+}
+
+.warning-glow:hover {
+    background: rgba(229, 169, 59, 0.06);
+    border-color: rgba(229, 169, 59, 0.35);
+    box-shadow: 0 0 15px rgba(229, 169, 59, 0.15);
+}
+
+.warning-glow svg {
+    color: #ffdf9e;
+    filter: drop-shadow(0 0 3px var(--neon-amber));
+}
+
+.warning-glow:hover svg {
+    color: #ffffff;
+    filter: drop-shadow(0 0 6px var(--neon-amber));
+}
+
+/* Equal Master Button Theme (= Key - Luxury Champagne Gold Solid Gradient) */
+.equal-btn {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #aa771c, #daab3a, #fbf5b7, #b38728);
+    background-size: 200% 200%;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2),
+                0 0 30px rgba(179, 135, 40, 0.15);
+    animation: gradient-shift 8s infinite alternate ease-in-out;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.equal-btn:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35),
+                0 0 40px rgba(179, 135, 40, 0.3);
+}
+
+.equal-btn:active {
+    transform: scale(0.97);
+}
+
+.equal-btn .btn-text {
+    color: #0b0c10;
+    text-shadow: none;
+    font-weight: 900;
+}
+
+/* ==========================================================================
+   RIPPLE TAP INTERACTIVE EFFECT
+   ========================================================================== */
+
+.ripple {
+    position: absolute;
+    background: rgba(212, 175, 55, 0.25);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-out 0.45s linear;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.equal-btn .ripple {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes ripple-out {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Keyboard press simulation class triggered via JS */
+.btn-active-sim {
+    transform: scale(0.96) !important;
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    background: rgba(212, 175, 55, 0.15) !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3) !important;
+}
+
+.btn-active-sim.equal-btn {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5) !important;
+}
+
+/* ==========================================================================
+   NEON TEXT FLICKERS & DECORATIVE ANIMATIONS
+   ========================================================================== */
+
+@keyframes neon-text-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 15px var(--neon-blue);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVENESS AND DEVICES SCALING
+   ========================================================================== */
+
+/* Tablet & Mobile Screens */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        align-items: flex-end; /* Pin to bottom like mobile app drawer */
+    }
+    
+    .system-container {
+        padding: 0;
+        max-width: 100%;
+        width: 100vw;
+    }
+    
+    .holo-frame {
+        border-radius: 36px 36px 0 0; /* Rounded top only */
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        padding: 24px 20px 34px 20px; /* Safe padding for bottom notches */
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.7);
+        transform: none !important;
+    }
+
+    .btn {
+        height: 60px;
+        border-radius: 14px;
+        font-size: 1.2rem;
+    }
+    
+    .equal-btn {
+        font-size: 1.5rem;
+    }
+    
+    .display-current {
+        font-size: 2.2rem;
+    }
+    
+    .blinking-cursor {
+        font-size: 2.1rem;
+    }
+
+    .ambient-glow {
+        width: 90vw;
+        height: 90vw;
+        opacity: 0.1;
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+    .holo-frame {
+        padding: 16px 14px 24px 14px;
+    }
+    
+    .calc-display-wrapper {
+        padding: 12px 14px;
+        margin-bottom: 16px;
+    }
+    
+    .btn {
+        height: 52px;
+        border-radius: 12px;
+        font-size: 1.1rem;
+    }
+    
+    .display-current {
+        font-size: 1.8rem;
+    }
+}
