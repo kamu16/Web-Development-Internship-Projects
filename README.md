@@ -37,6 +37,10 @@ A modern premium portfolio website showcasing:
 - HTML5
 - CSS3
 - JavaScript
+  
+# 📸 Project Screenshots
+
+<img width="1905" height="982" alt="Screenshot 2026-05-28 232206" src="https://github.com/user-attachments/assets/22d444f2-1f46-464b-ab9f-c9913f26e77f" />
 
 ---
 
@@ -56,6 +60,10 @@ A cinematic luxury travel landing page called **EscapeX**.
 - HTML5
 - CSS3
 - JavaScript
+  
+# 📸 Project Screenshots
+
+<img width="1919" height="980" alt="Screenshot 2026-05-28 232237" src="https://github.com/user-attachments/assets/f8f57f0c-ba49-4706-9aca-77be956492be" />
 
 ---
 
@@ -74,15 +82,8 @@ A futuristic cyberpunk calculator web app with interactive UI.
 - HTML5
 - CSS3
 - JavaScript
-
----
-
+  
 # 📸 Project Screenshots
 
-<img width="1905" height="982" alt="Screenshot 2026-05-28 232206" src="https://github.com/user-attachments/assets/22d444f2-1f46-464b-ab9f-c9913f26e77f" />
-
-<img width="1919" height="980" alt="Screenshot 2026-05-28 232237" src="https://github.com/user-attachments/assets/f8f57f0c-ba49-4706-9aca-77be956492be" />
-
 <img width="1919" height="973" alt="Screenshot 2026-05-28 232300" src="https://github.com/user-attachments/assets/39e094b2-cebe-481e-b7f9-fe6a2f33f1b4" />
-
-
+---
