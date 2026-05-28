@@ -1,6 +1,6 @@
 # Web-Development-Internship-Projects
 
-Welcome to my CODSOFT Web Development Internship repository.  
+Welcome to my Web Development Internship repository.  
 This repository contains all Level 1 tasks completed using HTML, CSS, and JavaScript with modern responsive UI designs and animations.
 
 ---
